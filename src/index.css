@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.box {
+  margin-top: 10em;
+}
+.toggleTimer {
+  text-align: center;
+  margin-top: 2em;
+  cursor: pointer;
+}
