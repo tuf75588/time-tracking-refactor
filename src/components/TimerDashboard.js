@@ -32,7 +32,8 @@ class TimerDashboard extends Component {
   };
   render() {
     return (
-      <div className="ui seven column centered grid ">
+      
+      <div className="ui column centered grid">
         <div className="column box">
           <EditableTimerList timers={this.state.timers} />
           <ToggalbleTimerForm />
