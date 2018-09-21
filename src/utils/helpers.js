@@ -1,5 +1,17 @@
 const uuidv4 = require('uuid/v4');
 
+
+export function newTimer(args={}) {
+  const timer = {
+    title: args.title || '',
+    project: args.project || '',
+    elapsed: args.elapsed,
+    id: getId(),
+    elapsed: 0,
+  }
+  return timer;
+}
+
 export function renderElapsedString(elapsed, runningSince) {
   let totalElapsed = elapsed;
   if (runningSince) {
