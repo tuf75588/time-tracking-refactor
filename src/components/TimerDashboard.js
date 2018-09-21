@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Image } from 'semantic-ui-react';
-import { getId } from '../utils/helpers';
+import { getId, newTimer } from '../utils/helpers';
 import EditableTimerList from './EditableTimerList';
 import ToggalbleTimerForm from './ToggalbleTimerForm';
 
@@ -30,13 +30,19 @@ class TimerDashboard extends Component {
       }
     ]
   };
+  handleCreateTimer = timer => {
+    const t = newTimer(timer);
+    this.setState(prevState => ({
+      timers: [...prevState.timers, t],
+    }))
+    
+  };
   render() {
     return (
-      
       <div className="ui column centered grid">
         <div className="column box">
           <EditableTimerList timers={this.state.timers} />
-          <ToggalbleTimerForm />
+          <ToggalbleTimerForm  handleFormSubmit={this.handleCreateTimer} />
         </div>
       </div>
     );
