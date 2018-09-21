@@ -18,7 +18,7 @@ class ToggalbleTimerForm extends Component {
   render() {
     const { isOpen } = this.state;
     if (isOpen) {
-      return <TimerForm />;
+      return <TimerForm onClose={this.handleClose} />;
     } else {
       return (
         <div className="toggleTimer" onClick={this.handleOpen}>

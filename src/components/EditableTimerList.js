@@ -1,6 +1,6 @@
 import React from 'react';
-import EditableTimer from './EditableTimer';
 import { renderElapsedString } from '../utils/helpers'
+import EditableTimer from './EditableTimer'
 const EditableTimerList = ({ timers }) => {
     const timerList = timers.map((timer, indx, arr) => {
         return (
@@ -9,6 +9,8 @@ const EditableTimerList = ({ timers }) => {
                 project={timer.project}
                 runningSince={timer.runningSince}
                 elapsed={renderElapsedString(timer.elapsed)}
+                id={timer.id}
+                key={timer.id}
             />
         )
     })
