@@ -43,5 +43,4 @@ class EditableTimer extends Component {
     }
   }
 }
-
 export default EditableTimer;
