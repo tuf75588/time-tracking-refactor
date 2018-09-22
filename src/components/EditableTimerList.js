@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderElapsedString } from '../utils/helpers'
 import EditableTimer from './EditableTimer'
-const EditableTimerList = ({ timers }) => {
+const EditableTimerList = ({ timers, onFormSubmit }) => {
     const timerList = timers.map((timer, indx, arr) => {
         return (
             <EditableTimer 
@@ -11,6 +11,7 @@ const EditableTimerList = ({ timers }) => {
                 elapsed={renderElapsedString(timer.elapsed)}
                 id={timer.id}
                 key={timer.id}
+                onFormSubmit={onFormSubmit}
             />
         )
     })

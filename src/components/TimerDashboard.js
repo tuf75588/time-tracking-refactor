@@ -30,19 +30,39 @@ class TimerDashboard extends Component {
       }
     ]
   };
+  handleEditFormSubmit = attrs => {
+    this.updateTimer(attrs);
+  };
+
   handleCreateTimer = timer => {
     const t = newTimer(timer);
     this.setState(prevState => ({
-      timers: [...prevState.timers, t],
-    }))
-    
+      timers: [...prevState.timers, t]
+    }));
+  };
+  updateTimer = attrs => {
+    this.setState(() => ({
+      timers: this.state.timers.map((timer, indx, arr) => {
+        if (timer.id === attrs.id) {
+          return Object.assign({}, timer, {
+            title: attrs.title,
+            project: attrs.project
+          });
+        } else {
+          return timer;
+        }
+      })
+    }));
   };
   render() {
     return (
       <div className="ui column centered grid">
         <div className="column box">
-          <EditableTimerList timers={this.state.timers} />
-          <ToggalbleTimerForm  handleFormSubmit={this.handleCreateTimer} />
+          <EditableTimerList
+            timers={this.state.timers}
+            onFormSubmit={this.handleEditFormSubmit}
+          />
+          <ToggalbleTimerForm handleFormSubmit={this.handleCreateTimer} />
         </div>
       </div>
     );
