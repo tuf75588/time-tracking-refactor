@@ -22,10 +22,10 @@ class EditableTimer extends Component {
     }));
   };
 
-handleSubmit = timer => {
+  handleSubmit = timer => {
     this.props.onFormSubmit(timer);
-    this.closeForm()
-}
+    this.closeForm();
+  };
 
   render() {
     if (this.state.editFormOpen) {
@@ -43,8 +43,11 @@ handleSubmit = timer => {
         <Timer
           title={this.props.title}
           project={this.props.project}
+          id={this.props.id}
           elapsed={this.props.elapsed}
+          runningSince={this.props.runningSince}
           onEditClick={this.handleEditClick}
+          onStartClick={this.props.onStartClick}
         />
       );
     }

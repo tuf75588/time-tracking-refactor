@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import TimerActionButton from './TimerActionButton';
-
+import { renderElapsedString } from '../utils/helpers';
 class Timer extends Component {
+  componentDidMount() {
+    this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  }
+  handleStartClick = () => {
+    this.props.onStartClick(this.props.id);
+  };
   render() {
-    const { title, project, elapsed, handleEdit } = this.props;
+    const {
+      title,
+      project,
+      runningSince,
+      elapsed,
+      handleEdit,
+      startTimer,
+      id
+    } = this.props;
+    const renderElapsedStringVal = renderElapsedString(elapsed, runningSince);
     return (
       <div className="ui centered card">
         <div className="content">
           <div className="header">{title}</div>
           <div className="meta">{project}</div>
           <div className="center aligned description">
-            <h2>{elapsed}</h2>
+            <h2>{renderElapsedStringVal}</h2>
           </div>
           <div className="extra content">
-            <span className="right floated edit icon" style={{cursor: 'pointer'}} onClick={this.props.onEditClick}>
+            <span
+              className="right floated edit icon"
+              style={{ cursor: 'pointer' }}
+              onClick={this.props.onEditClick}
+            >
               <i className="edit icon" />
             </span>
             <span className="right floated trash icon">
@@ -22,7 +41,11 @@ class Timer extends Component {
             </span>
           </div>
         </div>
-        <TimerActionButton isRunning={false} />
+        <TimerActionButton
+          isRunning={false}
+          onStartClick={this.handleStartClick}
+          timerIsRunning={!!this.props.runningSince}
+        />
       </div>
     );
   }

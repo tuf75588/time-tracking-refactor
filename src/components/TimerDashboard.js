@@ -30,6 +30,27 @@ class TimerDashboard extends Component {
       }
     ]
   };
+
+  handleStartClick = timerId => {
+    this.startTimer(timerId);
+  };
+
+  startTimer = timerId => {
+    // ...
+    const now = Date.now();
+
+    this.setState({
+      timers: this.state.timers.map(timer => {
+        if (timer.id === timerId) {
+          return Object.assign({}, timer, {
+            runningSince: now
+          });
+        } else {
+          return timer;
+        }
+      })
+    });
+  };
   handleEditFormSubmit = attrs => {
     this.updateTimer(attrs);
   };
@@ -61,6 +82,7 @@ class TimerDashboard extends Component {
           <EditableTimerList
             timers={this.state.timers}
             onFormSubmit={this.handleEditFormSubmit}
+            onStartClick={this.handleStartClick}
           />
           <ToggalbleTimerForm handleFormSubmit={this.handleCreateTimer} />
         </div>

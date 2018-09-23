@@ -15,18 +15,23 @@ class ToggalbleTimerForm extends Component {
       isOpen: false
     }));
   };
-  handleFormSubmit = (timer) => {
+  handleFormSubmit = timer => {
     this.props.handleFormSubmit(timer);
     this.setState(() => ({
-      isOpen: false,
-    }))
-  }
+      isOpen: false
+    }));
+  };
   render() {
     const { handleFormSubmit } = this.props;
     const { isOpen } = this.state;
-    console.log(this.props)
+
     if (isOpen) {
-      return <TimerForm onClose={this.handleClose} onFormSubmit={this.handleFormSubmit} />;
+      return (
+        <TimerForm
+          onClose={this.handleClose}
+          onFormSubmit={this.handleFormSubmit}
+        />
+      );
     } else {
       return (
         <div className="toggleTimer" onClick={this.handleOpen}>
